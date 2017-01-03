@@ -1,0 +1,23 @@
+version: '2'
+services:
+  riemanna:
+    build: riemann
+    hostname: riemanna
+    volumes:
+      - ./riemann-config/riemanna.config:/etc/riemann/riemann.config
+  riemannb:
+    hostname: riemannb
+    build: riemann
+    volumes:
+      - ./riemann-config/riemannb.config:/etc/riemann/riemann.config
+  riemannc:
+    hostname: riemannc
+    build: riemann
+    volumes:
+      - ./riemann-config/riemannc.config:/etc/riemann/riemann.config
+  riemann-health-a:
+    build: riemann-tools
+    command: riemann-health --host riemanna
+  riemann-health-b:
+    build: riemann-tools
+    command: riemann-health --host riemannb
