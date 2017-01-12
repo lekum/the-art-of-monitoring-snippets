@@ -2,8 +2,9 @@ version: '2'
 services:
   collectd:
     build: collectd
-    #pid: host
-    #privileged: true
+    hostname: collectd
+    pid: host
+    privileged: true
     volumes:
       - ./collectd-config/:/etc/collectd/collectd.conf.d/
 
